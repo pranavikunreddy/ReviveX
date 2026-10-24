@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Project Details | ReviveX</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <header>
+        <h1>ReviveX</h1>
+        <p>Bring abandoned projects back to life.</p>
+    </header>
+
+    <main class="auth-card">
+
+        <h2>{{ project["name"] }}</h2>
+
+        <p><strong>Description:</strong></p>
+        <p>{{ project["description"] }}</p>
+
+        <p>
+            <strong>Technologies:</strong>
+            {{ project["technologies"] or "Not specified" }}
+        </p>
+
+        <p>
+            <strong>Status:</strong>
+            {{ project["status"] }}
+        </p>
+
+        <p>
+            <strong>Created:</strong>
+            {{ project["created_at"] }}
+        </p>
+
+        <hr>
+
+        <!-- Edit Project -->
+        <p>
+            <a href="{{ url_for('edit_project',
+                                project_id=project['id']) }}">
+                ✏️ Edit Project
+            </a>
+        </p>
+
+        <!-- Delete Project -->
+        <form action="{{ url_for('delete_project',
+                                 project_id=project['id']) }}"
+              method="POST"
+              onsubmit="return confirm('Are you sure you want to delete this project? This action cannot be undone.');">
+
+            <button type="submit">
+                🗑️ Delete Project
+            </button>
+        </form>
+
+        <!-- Back to Dashboard -->
+        <p>
+            <a href="{{ url_for('dashboard') }}">
+                ← Back to Dashboard
+            </a>
+        </p>
+
+    </main>
+</body>
+</html>

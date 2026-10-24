@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | ReviveX</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>ReviveX</h1>
+        <p>Bring abandoned projects back to life.</p>
+    </header>
+
+    <main class="auth-card">
+        <h2>Welcome, {{ username }}!</h2>
+        <p>Your revival journey starts here.</p>
+
+        
+<h3>Revive</h3>
+<p>Discover unfinished projects and find opportunities to revive them.</p>
+
+<p>
+    <a href="{{ url_for('add_project') }}">+ Add a Project</a>
+</p>
+
+<h3>My Projects</h3>
+
+{% if projects %}
+    {% for project in projects %}
+        <section class="auth-card">
+            
+<h3>
+    <a href="{{ url_for('project_detail', project_id=project['id']) }}">
+        {{ project["name"] }}
+    </a>
+</h3>
+
+            <p>{{ project["description"] }}</p>
+            <p><strong>Technologies:</strong>
+                {{ project["technologies"] or "Not specified" }}
+            </p>
+            <p><strong>Status:</strong> {{ project["status"] }}</p>
+        </section>
+    {% endfor %}
+{% else %}
+    <p>You haven't added any projects yet.</p>
+{% endif %}
+
+
+
+        <h3>Coming into the workspace</h3>
+        <p>Project discovery, roadmaps, Connect, FounderCircle and FundBridge
+           will be added in the next development steps.</p>
+
+        <form method="POST" action="{{ url_for('logout') }}">
+            <button type="submit">Logout</button>
+        </form>
+    </main>
+</body>
+</html>

@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReviveX | Project Revival Platform</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="navbar">
+        <h1>ReviveX</h1>
+        <p>Bring abandoned projects back to life.</p>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <h2>Every unfinished project deserves another chance.</h2>
+            <p>Discover projects, reconnect with ideas, and build something meaningful.</p>
+        </section>
+
+        <section class="welcome-card">
+            <h2>Welcome to ReviveX</h2>
+            <p>Your project revival journey starts here.</p>
+            <p class="status">Application setup successful!</p>
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+
+<div class="auth-links">
+    <a href="{{ url_for('login') }}">Login</a>
+    <a href="{{ url_for('signup') }}">Get Started</a>
+</div>

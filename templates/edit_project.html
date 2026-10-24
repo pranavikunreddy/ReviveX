@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Project | ReviveX</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>ReviveX</h1>
+        <p>Bring abandoned projects back to life.</p>
+    </header>
+
+    <main class="auth-card">
+        <h2>Edit Project</h2>
+
+        <form method="POST">
+            <label for="name">Project Name</label>
+            <input type="text" id="name" name="name"
+                   value="{{ project['name'] }}" required>
+
+            <label for="description">Description</label>
+            <textarea id="description" name="description"
+                      rows="5" required>{{ project['description'] }}</textarea>
+
+            <label for="technologies">Technologies</label>
+            <input type="text" id="technologies" name="technologies"
+                   value="{{ project['technologies'] or '' }}">
+
+            <label for="status">Project Status</label>
+            <select id="status" name="status" required>
+                {% for s in ['Abandoned', 'On Hold', 'In Progress'] %}
+                    <option value="{{ s }}"
+                        {% if project['status'] == s %}selected{% endif %}>
+                        {{ s }}
+                    </option>
+                {% endfor %}
+            </select>
+
+            <button type="submit">Save Changes</button>
+        </form>
+
+        <p>
+            <a href="{{ url_for('project_detail',
+                               project_id=project['id']) }}">
+                Cancel
+            </a>
+        </p>
+    </main>
+</body>
+</html>

@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Project | ReviveX</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main class="auth-card">
+        <h1>Add a Project</h1>
+        <p>Give your unfinished project another chance.</p>
+
+        {% with messages = get_flashed_messages() %}
+            {% for message in messages %}
+                <p class="flash-message">{{ message }}</p>
+            {% endfor %}
+        {% endwith %}
+
+        <form method="POST">
+            <label for="name">Project name</label>
+            <input id="name" name="name" required maxlength="100">
+
+            <label for="description">Description</label>
+            <textarea id="description" name="description"
+                      required maxlength="2000"></textarea>
+
+            <label for="technologies">Technologies</label>
+            <input id="technologies" name="technologies"
+                   placeholder="Python, Flask, HTML">
+
+            <label for="status">Project status</label>
+            <select id="status" name="status">
+                <option>Abandoned</option>
+                <option selected>On Hold</option>
+                <option>In Progress</option>
+            </select>
+
+            <button type="submit">Save Project</button>
+        </form>
+
+        <p><a href="{{ url_for('dashboard') }}">Back to Dashboard</a></p>
+    </main>
+</body>
+</html>
